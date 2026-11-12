@@ -1,0 +1,41 @@
+name: Validate Ansible Neovim Dev
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  config-and-shell:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lua syntax checker
+        run: sudo apt-get update && sudo apt-get install -y lua5.4
+      - name: Check installer and shell syntax
+        run: |
+          for script in install.sh scripts/*.sh; do bash -n "$script"; done
+      - name: Check Neovim configuration Lua syntax
+        run: |
+          find nvim -type f -name '*.lua' -print0 | xargs -0 -n1 luac5.4 -p
+
+  python-examples:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test tools
+        run: python -m pip install ruff pytest
+      - name: Ruff lint
+        working-directory: examples
+        run: ruff check .
+      - name: Ruff format
+        working-directory: examples
+        run: ruff format --check .
+      - name: Pytest
+        working-directory: examples
+        run: pytest -q

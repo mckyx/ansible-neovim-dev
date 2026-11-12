@@ -14,6 +14,8 @@ require('lazy').setup({
   spec = {
     { 'LazyVim/LazyVim', import = 'lazyvim.plugins' },
     -- Extras are explicitly imported so all colleagues get the same feature set.
+    { import = 'lazyvim.plugins.extras.editor.snacks_picker' },
+    { import = 'lazyvim.plugins.extras.editor.snacks_explorer' },
     { import = 'lazyvim.plugins.extras.coding.blink' },
     { import = 'lazyvim.plugins.extras.lang.ansible' },
     { import = 'lazyvim.plugins.extras.lang.yaml' },

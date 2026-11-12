@@ -1,0 +1,8 @@
+---
+- name: Verify Ansible developer tools
+  hosts: local
+  gather_facts: false
+  tasks:
+    - name: Print a confirmation
+      ansible.builtin.debug:
+        msg: "Ansible development environment is ready"

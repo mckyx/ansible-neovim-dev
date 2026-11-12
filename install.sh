@@ -110,7 +110,6 @@ if [[ ! -x "$NODE_DIR/bin/node" ]]; then
   get "$base/$filename" "$TMP/$filename"
   (cd "$TMP"; printf '%s\n' "$sums" | grep -F "  $filename" | sha256sum -c --status)
   tar -xJf "$TMP/$filename" -C "$TMP"
-  mv "$TMP/$filename" /dev/null 2>/dev/null || true
   mv "$TMP/$(basename "$filename" .tar.xz)" "$NODE_DIR"
 fi
 

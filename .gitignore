@@ -1,0 +1,13 @@
+.DS_Store
+*.swp
+*.swo
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+.env
+*.pyc
+lazy-lock.json

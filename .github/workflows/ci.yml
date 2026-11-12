@@ -17,6 +17,11 @@ jobs:
       - name: Check installer and shell syntax
         run: |
           for script in install.sh scripts/*.sh; do bash -n "$script"; done
+      - name: Smoke-test installer options under Bash nounset
+        run: |
+          bash ./install.sh --help
+          bash ./install.sh --dry-run
+          grep -qx 'DRY=0' install.sh
       - name: Check Neovim configuration Lua syntax
         run: |
           find nvim -type f -name '*.lua' -print0 | xargs -0 -n1 luac5.4 -p

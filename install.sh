@@ -10,6 +10,7 @@ CONFIG="$HOME/.config/nvim"
 FORCE=0
 UPDATE=0
 SKIP=0
+DRY=0
 
 help() {
   echo "Usage: ./install.sh [--dry-run] [--force] [--update-config] [--skip-plugin-sync]"
